@@ -38,20 +38,17 @@ function randomSquare() {
     // return the selected square
     return randomSquare;
   }
-
-  //call randomSquare functions every 0.75 seconds
-  setInterval(randomSquare, 750);
+  
 
 //create a function for the mole moving.
 
-let timerId = 60;
+let moleMoving;
 
 function moveMole() {
-
-
+    moleMoving = setInterval(randomSquare, 750); //mole moves every 0.75seconds
 }
-    //get the timerID and set it to null.
-    //use setInterval to set how quickly the mole will jump from square to square. 
+
+moveMole();
 
 //you want to get a point every time you hit the mole
     //forEach()

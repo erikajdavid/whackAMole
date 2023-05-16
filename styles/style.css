@@ -236,6 +236,21 @@ body {
   padding: 0;
 }
 
+main {
+  height: 95vh;
+  text-align: center;
+  display: flex;
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 90%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
 .container {
   width: 602px;
   display: flex;
@@ -253,5 +268,10 @@ body {
   background-image: url("../assets/mole.jpg");
   background-position: bottom;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
+}
+
+footer {
+  height: 5vh;
+  text-align: center;
 }

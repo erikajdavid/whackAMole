@@ -49,17 +49,19 @@ function randomSquare() {
 let moleMoving;
 
 function moveMole() {
-    moleMoving = setInterval(randomSquare, 1000); //mole moves every 0.75seconds
+    moleMoving = setInterval(randomSquare, 1250); //mole moves every 0.75seconds
 }
 
 moveMole();
 
-//you want to get a point every time you hit the mole
-    //forEach()
-    //addEventListener    mousedown() event
-    //if the square ID === the random square
-    //return score and add a point
-    //display result on screen
+//create a countdown function
+function countdown() {
+    startTimer --;
+    timer.textContent = startTimer;
+}
+countdown();
+
+const ticToc = setInterval(countdown, 1000);
 
 //get the time to stop working when it gets to 0
 //create a variable to default the default time (60 seconds)

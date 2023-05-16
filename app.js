@@ -1,16 +1,31 @@
 //Whack-A-Mole
 
 //target score and save in a variable.
+const score = document.querySelector('.score');
+//intialize the results to zero and save in a variable.
+let userScore = 0;
+
 //target timer and save in a variable.
+const timer = document.querySelector('.timer');
+
 //target the mole and save in a variable.
+const mole = document.querySelector('.mole');
 
 //target all buttons and save in a variable.
+const squares = document.querySelectorAll('.square')
     //use a forEach() method
-    //add event listeners
+    squares.forEach(square => {
+        //add event listeners
+        square.addEventListener('mousedown', randomSquare)  //using mousedown because this executes the function as soon as the mouse is clicked. the click event only fires after a full click action occurs. 
+    });   
 
-//intialize the results to zero and save in a variable.
+let randomPosition;
 
-//create a function to get a random square.
+//create a function to get a random square and pass as a callback function. 
+function randomSquare() {
+    const randomIndex = Math.floor(Math.random() * squares.length);
+    return squares[randomIndex];
+}
     //forEach() 
         //remove the mole if it exists on any square. 
     

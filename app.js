@@ -7,7 +7,8 @@ let userScore = 0;
 score.textContent = userScore;
 //target timer and save in a variable.
 const timer = document.querySelector('.timer');
-let startTimer = 60;
+//create a variable to default the default time (60 seconds)
+let startTimer = 10;
 timer.textContent = startTimer;
 
 //target all buttons and save in a variable.
@@ -51,23 +52,42 @@ let moleMoving;
 function moveMole() {
     moleMoving = setInterval(randomSquare, 1250); //mole moves every 0.75seconds
 }
-
 moveMole();
 
 //create a countdown function
 function countdown() {
+    if (startTimer === 0) {
+        stopGame();
+    } else {
+    //default time - 1 second
     startTimer --;
     timer.textContent = startTimer;
+    }
 }
 countdown();
 
+//timer goes down every 1 second
 const ticToc = setInterval(countdown, 1000);
 
-//get the time to stop working when it gets to 0
-//create a variable to default the default time (60 seconds)
-//create a countdown function
-//default time - 1 second
-//display time left
+//function to stop game
+function stopGame() {
+    if (startTimer === 0) {
+        clearInterval(ticToc);
+        clearInterval(moleMoving);
+        alert(`Game Over. Your score is: ${userScore}`);
+        timer.textContent = 0;
+        score.textContent = 0;
+    }
+}
+
+
+
+
+
+
+
+
+
 //if the time === 0 clear the interval
 //alert GAME OVER
 

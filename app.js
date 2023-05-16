@@ -75,6 +75,7 @@ function stopGame() {
         clearInterval(ticToc);
         clearInterval(moleMoving);
         alert(`Game Over. Your score is: ${userScore}`);
+        mole.classList.remove('mole');
         timer.textContent = 0;
         score.textContent = 0;
     }

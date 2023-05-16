@@ -262,6 +262,8 @@ main {
   width: 200px;
   height: 200px;
   border: 1px solid black;
+  position: relative;
+  cursor: pointer;
 }
 
 .mole {
@@ -275,3 +277,15 @@ footer {
   height: 5vh;
   text-align: center;
 }
+
+/*@keyframes slideup {
+    from {
+      transform: translateY(100%);
+      z-index: 1000;
+    }
+
+    to {
+      transform: translateY(0%);
+      z-index: 50;
+    }
+}*/

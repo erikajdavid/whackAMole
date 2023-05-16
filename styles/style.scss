@@ -42,6 +42,8 @@ main {
     width: 200px;
     height: 200px;
     border: 1px solid black;
+    position: relative;
+    cursor: pointer;
 }
 
 .mole {
@@ -49,9 +51,25 @@ main {
     background-position: bottom;
     background-repeat: no-repeat;
     background-size: cover;
+    //animation: slideup 1s ease-in-out forwards;
+    //border: none;
 }
 
 footer {
     height: 5vh;
     text-align: center;
 }
+
+//animations
+
+/*@keyframes slideup {
+    from {
+      transform: translateY(100%);
+      z-index: 1000;
+    }
+  
+    to {
+      transform: translateY(0%);
+      z-index: 50;
+    }
+}*/

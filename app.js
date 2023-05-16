@@ -23,20 +23,33 @@ let randomPosition;
 
 //create a function to get a random square and pass as a callback function. 
 function randomSquare() {
+    const previousMole = document.querySelector('.mole');
+    if (previousMole) {
+      previousMole.classList.remove('mole');
+    }
+  
+    // generate a random index and select a square
     const randomIndex = Math.floor(Math.random() * squares.length);
-    return squares[randomIndex];
-}
-    //forEach() 
-        //remove the mole if it exists on any square. 
-    
-    //you need to pass a random number (0 to 8) into the squares array.
-    //get a random number and save in a variable.
-        //Math.random generated random number multiple by the length of the array.
-        //Math.floor rounds down the generated random number.
-    //assign the mole class to the random number. 
+    const randomSquare = squares[randomIndex];
+  
+    // add the 'mole' class to the selected square
+    randomSquare.classList.add('mole');
+  
+    // return the selected square
+    return randomSquare;
+  }
 
+  //call randomSquare functions every 0.75 seconds
+  setInterval(randomSquare, 750);
 
 //create a function for the mole moving.
+
+let timerId = 60;
+
+function moveMole() {
+
+
+}
     //get the timerID and set it to null.
     //use setInterval to set how quickly the mole will jump from square to square. 
 

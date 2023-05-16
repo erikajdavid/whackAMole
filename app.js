@@ -8,24 +8,26 @@ let userScore = 0;
 //target timer and save in a variable.
 const timer = document.querySelector('.timer');
 
-//target the mole and save in a variable.
-const mole = document.querySelector('.mole');
-
 //target all buttons and save in a variable.
 const squares = document.querySelectorAll('.square')
     //use a forEach() method
     squares.forEach(square => {
-        //add event listeners
-        square.addEventListener('mousedown', randomSquare)  //using mousedown because this executes the function as soon as the mouse is clicked. the click event only fires after a full click action occurs. 
-    });   
+        square.addEventListener('mousedown', () => {
+            if (square.classList.contains('mole')) {
+                userScore++;
+                score.textContent = userScore;
+                square.classList.remove('mole');
+            }
+        });
+    }); 
 
 let randomPosition;
 
 //create a function to get a random square and pass as a callback function. 
 function randomSquare() {
-    const previousMole = document.querySelector('.mole');
-    if (previousMole) {
-      previousMole.classList.remove('mole');
+    const mole = document.querySelector('.mole');    
+    if (mole) {
+      mole.classList.remove('mole');
     }
   
     // generate a random index and select a square
@@ -45,7 +47,7 @@ function randomSquare() {
 let moleMoving;
 
 function moveMole() {
-    moleMoving = setInterval(randomSquare, 750); //mole moves every 0.75seconds
+    moleMoving = setInterval(randomSquare, 1000); //mole moves every 0.75seconds
 }
 
 moveMole();

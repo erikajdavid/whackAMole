@@ -5,3 +5,33 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
 .clearfix:after {visibility: hidden; display: block; font-size: 0; content: ''; clear: both; height: 0; }
 
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
+
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 125%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 602px;
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid black;
+}
+
+.square {
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+}
+
+.mole {
+    background-image: url("../assets/mole.jpg");
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+}

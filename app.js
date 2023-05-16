@@ -5,7 +5,7 @@ let userScore = 0;
 score.textContent = userScore;
 
 const timer = document.querySelector('.timer');
-let startTimer = 10;
+let startTimer = 5;
 timer.textContent = startTimer;
 
 const squares = document.querySelectorAll('.square');
@@ -60,10 +60,21 @@ function stopGame() {
 }
 
 //create function to restart the game
-function startGame() {
+
+  function startGame() {
     const startBtn = document.querySelector('.startBtn');
     startBtn.addEventListener('click', () => {
-    })
-};
+    userScore = 0;
+    startTimer = 10;
+    score.textContent = userScore;
+    timer.textContent = startTimer;
+    randomSquare();
+    moveMole();
+    countdown();
+    clearInterval(ticToc);
+    clearInterval(moleMoving);
+    });
+  };
+
+  startGame();
   
-startGame();

@@ -4,9 +4,11 @@
 const score = document.querySelector('.score');
 //intialize the results to zero and save in a variable.
 let userScore = 0;
-
+score.textContent = userScore;
 //target timer and save in a variable.
 const timer = document.querySelector('.timer');
+let startTimer = 60;
+timer.textContent = startTimer;
 
 //target all buttons and save in a variable.
 const squares = document.querySelectorAll('.square')

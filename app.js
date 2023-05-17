@@ -1,7 +1,31 @@
 // Whack-A-Mole
 
+//begining of game
+//target timer set timer to 10, score to 0, and mole needs to be removed. 
+const timer = document.querySelector('.timer');
+//initialize timer to 0 and print
+let startTime = 5;
+timer.textContent = startTime;
+
+//target score and save in a variable
+const score = document.querySelector('.score');
+//initiizalize score to 0 and print
+let initialScore = 0;
+score.textContent = initialScore;
+
+//target mole and save in a variable
+const mole = document.querySelector('.mole');
+//mole needs to not be on the page when the page loads. 
+mole.classList.remove('mole')
+
 
 //press start button 
+//target button and set in a variable 
+const startBtn = document.querySelector('.startBtn');
+//add event listener
+//you want the game to start when this button is clicked.
+startBtn.addEventListener('click', startGame);
+
 //timer starts
 //random mole pops up on screen
 //mole moves every 1 second 

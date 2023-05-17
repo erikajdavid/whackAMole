@@ -15,89 +15,27 @@ score.textContent = userScore;
 
 //target mole and save in a variable
 const mole = document.querySelector('.mole');
-//mole needs to not be on the page when the page loads. 
-mole.classList.remove('mole')
-
-//press start button 
-//target button and set in a variable 
-const startBtn = document.querySelector('.startBtn');
-//add event listener
-//you want the game to start when this button is clicked.
-startBtn.addEventListener('click', startGame);
-
-
-//create a function to start the game
-function startGame() {
-  randomSquare();
-  moleSpeed();
-  countdown();
-}
-
-//create countdown function
-function countdown() {
-  if (timer === 0) {
-    //clear interval to stop the timer
-    clearInterval(ticToc)
-    //alert game over
-    alert(`Game Over`);
-  } else {
-    //start time to decrease by one increment
-    timer --;
-  }
-  //print to screen
-  timeTracker.textContent = timer;
-}
-
-//this is the speed 1s at which the mole is moving
-const ticToc = setInterval(countdown, 1000);
 
 //target all squares and save in a variable
-const squares = document.querySelectorAll('.square')
-//add forEach()
-//search all the squares to find which one the mole is on
-squares.forEach(square => {
-  //add event listener
-  square.addEventListener('click', randomSquare)
-    if (square.id === 'mole') {
-      //add a point to the score
-      userScore++;
-    }
-      //remove the mole after its been clicked
-    square.classList.remove('mole');
-  }
-);
+const squares = document.querySelectorAll('.square');
 
-//create function for mole moving
-let move;
-function moleSpeed() {
-  move = setInterval(randomSquare, 1250);
+//create a function to get a random square for the mole
+function randomSquare() {
+  //for each square,
+  squares.forEach(square => {
+    //search for the mole and remove it before the game starts
+    square.classList.remove('mole')
+  })
+  //get a random index for the random square
+  let randomIndex = [Math.floor(Math.random() * squares.length)];
+  let randomMolePosition = squares[randomIndex];
+  //add the mole to the random square
+  randomMolePosition.classList.add('mole');
 }
 
-//function to get a random square
-function randomSquare() {
-  const randomIndex = Math.floor(Math.random() * squares.length);
-  let randomPosition = squares[randomIndex];
-  if (mole) {
-    randomPosition.classList.add('mole');
-  }
-    return randomSquare;
-  }
 randomSquare();
 
 
-
-
-  //countdown timer starts
-  //mole appears on random square
-  //mole speed is set 
-
-//user clicks on mole, adds 1 point to the score. 
-//timer gets to 0. 
-//game over message appears
-//clear score
-//clear timer
-//clear mole 
-//restart game
 
 
 

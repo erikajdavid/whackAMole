@@ -1,5 +1,27 @@
 // Whack-A-Mole
 
+
+//press start button 
+//timer starts
+//random mole pops up on screen
+//mole moves every 1 second 
+//user clicks on mole, adds 1 point to the score. 
+//timer gets to 0. 
+//game over message appears
+//clear score
+//clear timer
+//clear mole 
+//restart game
+
+
+
+
+
+
+
+//---------------------------------------------------------------------
+/*
+//FIRST ATTEMPT A CODE//
 const score = document.querySelector('.score');
 let userScore = 0;
 score.textContent = userScore;
@@ -77,4 +99,5 @@ function stopGame() {
   };
 
   startGame();
+*/
   

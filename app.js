@@ -33,7 +33,46 @@ function randomSquare() {
   randomMolePosition.classList.add('mole');
 }
 
-randomSquare();
+//set speed of mole
+let moleSpeedInterval = null;
+function moleSpeed() {
+  moleSpeedInterval = setInterval(randomSquare, 1000);
+}
+
+moleSpeed();
+
+//create countdown function
+function countdown() {
+  if(timer === 0) {
+    alert(`Game Over`);
+    stopCountdown();
+  } else {
+    //decrease timer by 1 increment
+    timer--;
+    //print 
+    timeTracker.textContent = timer;
+  }
+}
+
+//set speed for timer
+let ticTocInterval = null;
+function ticToc() {
+  ticTocInterval = setInterval(countdown, 1000);
+}
+
+ticToc();
+
+//function to stop timmer
+
+function stopCountdown() {
+    clearInterval(ticTocInterval);
+    clearInterval(moleSpeedInterval);
+    ticToc();
+    moleSpeed();
+    randomMolePosition.classList.remove('mole');
+}
+
+
 
 
 

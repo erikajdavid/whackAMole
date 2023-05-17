@@ -2,22 +2,21 @@
 
 //begining of game
 //target timer set timer to 10, score to 0, and mole needs to be removed. 
-const timer = document.querySelector('.timer');
+const timeTracker = document.querySelector('.timer');
 //initialize timer to 0 and print
-let startTime = 5;
-timer.textContent = startTime;
+let timer = 5;
+timeTracker.textContent = timer;
 
 //target score and save in a variable
 const score = document.querySelector('.score');
 //initiizalize score to 0 and print
-let initialScore = 0;
-score.textContent = initialScore;
+let userScore = 0;
+score.textContent = userScore;
 
 //target mole and save in a variable
 const mole = document.querySelector('.mole');
 //mole needs to not be on the page when the page loads. 
 mole.classList.remove('mole')
-
 
 //press start button 
 //target button and set in a variable 
@@ -26,9 +25,72 @@ const startBtn = document.querySelector('.startBtn');
 //you want the game to start when this button is clicked.
 startBtn.addEventListener('click', startGame);
 
-//timer starts
-//random mole pops up on screen
-//mole moves every 1 second 
+
+//create a function to start the game
+function startGame() {
+  randomSquare();
+  moleSpeed();
+  countdown();
+}
+
+//create countdown function
+function countdown() {
+  if (timer === 0) {
+    //clear interval to stop the timer
+    clearInterval(ticToc)
+    //alert game over
+    alert(`Game Over`);
+  } else {
+    //start time to decrease by one increment
+    timer --;
+  }
+  //print to screen
+  timeTracker.textContent = timer;
+}
+
+//this is the speed 1s at which the mole is moving
+const ticToc = setInterval(countdown, 1000);
+
+//target all squares and save in a variable
+const squares = document.querySelectorAll('.square')
+//add forEach()
+//search all the squares to find which one the mole is on
+squares.forEach(square => {
+  //add event listener
+  square.addEventListener('click', randomSquare)
+    if (square.id === 'mole') {
+      //add a point to the score
+      userScore++;
+    }
+      //remove the mole after its been clicked
+    square.classList.remove('mole');
+  }
+);
+
+//create function for mole moving
+let move;
+function moleSpeed() {
+  move = setInterval(randomSquare, 1250);
+}
+
+//function to get a random square
+function randomSquare() {
+  const randomIndex = Math.floor(Math.random() * squares.length);
+  let randomPosition = squares[randomIndex];
+  if (mole) {
+    randomPosition.classList.add('mole');
+  }
+    return randomSquare;
+  }
+randomSquare();
+
+
+
+
+  //countdown timer starts
+  //mole appears on random square
+  //mole speed is set 
+
 //user clicks on mole, adds 1 point to the score. 
 //timer gets to 0. 
 //game over message appears

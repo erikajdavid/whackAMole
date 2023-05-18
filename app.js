@@ -3,7 +3,7 @@
 //target timer and save in a variable
 const timeTracker = document.querySelector('.timer');
 //initialize timer to 0 and print
-let timer = 3;
+let timer = 5;
 timeTracker.textContent = timer;
 
 //target score and save in a variable
@@ -55,7 +55,7 @@ function randomSquare() {
 let moleSpeedInterval = null;
 //create functions for mole moving
 function moleSpeed() {
-  moleSpeedInterval = setInterval(randomSquare, 1000);
+  moleSpeedInterval = setInterval(randomSquare, 800);
   randomSquare();
 }
 
@@ -84,10 +84,10 @@ function resetGame() {
     //clear the score. without this, points in a new game are added to the previous score.
     score.textContent = 0;
     userScore = 0;
-    //this is only to display the timer at 3 seconds. without it, the timer just displays 2, 1, 0. 
-    timeTracker.textContent = 3;
-    //this is to set the timer to run for 3 seconds. the timer will not run without it. 
-    timer = 3;
+    //this is only to display the timer at 5 seconds. without it, the timer just displays 2, 1, 0. 
+    timeTracker.textContent = 10;
+    //this is to set the timer to run for 5 seconds. the timer will not run without it. 
+    timer = 5;
     //clear the timer speed
     clearInterval(ticTocInterval);
     //clear the mole moving speed
@@ -101,7 +101,7 @@ function resetGame() {
 //target start button and save in a variable
 const start = document.querySelector('.startBtn');
 //add event listener
-start.addEventListener('click', startGame);
+start.addEventListener('mousedown', startGame);
 
 //create function to start the game
 function startGame() {

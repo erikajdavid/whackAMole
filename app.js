@@ -27,11 +27,11 @@ squares.forEach(square => {
   //add an event listener
   square.addEventListener('mousedown', () => {
     if (square.classList.contains('bomb')) {
-      //add 1 point to score
+      //remove 3 points from score
       userScore = userScore - 3;
       //print new score
       score.textContent = userScore;
-      //remove mole when clicked
+      //remove bomb when clicked
       square.classList.remove('bomb') 
     } else if (square.classList.contains('mole')) {
       //add 1 point to score
@@ -48,7 +48,7 @@ squares.forEach(square => {
 function randomSquare() {
   //for each square,
   squares.forEach(square => {
-    //search for the mole and remove it before the game starts
+    //search for the mole and bomb and remove them before the game starts
     square.classList.remove('mole', 'bomb');
   })
   //get a random index for the random square
@@ -57,15 +57,16 @@ function randomSquare() {
   //add the mole to the random square
   randomMolePosition.classList.add('mole');
 
+  //bomb has a 20% chance of appearing in a square
   if (Math.random() < 0.2) {
     randomMolePosition.classList.add('bomb');
   }
 }
 
-//set speed of mole
 let moleSpeedInterval = null;
 //create functions for mole moving
 function moleSpeed() {
+  //set speed of mole to be 0.8 seconds
   moleSpeedInterval = setInterval(randomSquare, 800);
   randomSquare();
 }
@@ -83,10 +84,10 @@ function countdown() {
   }
 }
 
-//set speed for timer
 let ticTocInterval = null;
 //create function for timer speed
 function ticToc() {
+  //set speed of timer to 1 second
   ticTocInterval = setInterval(countdown, 1000);
 }
 

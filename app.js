@@ -1,7 +1,6 @@
-// Whack-A-Mole
+//target timer set timer to 3, score to 0, and mole needs to be removed from the page.
 
-//begining of game
-//target timer set timer to 10, score to 0, and mole needs to be removed. 
+//target timer and save in a variable
 const timeTracker = document.querySelector('.timer');
 //initialize timer to 0 and print
 let timer = 3;
@@ -13,13 +12,22 @@ const score = document.querySelector('.score');
 let userScore = 0;
 score.textContent = userScore;
 
+//target mole and save in a variable
+const mole = document.querySelector('.mole');
+mole.remove(); //this removes the mole from page when the page is first loaded. 
+
 //target all squares and save in a variable
 const squares = document.querySelectorAll('.square');
+//for each square
 squares.forEach(square => {
+  //add an event listener
   square.addEventListener('click', () => {
     if (square.classList.contains('mole')) {
+      //add 1 point to score
       userScore++;
+      //print new score
       score.textContent = userScore;
+      //remove mole when clicked
       square.classList.remove('mole');
     }
   });
@@ -32,7 +40,7 @@ function randomSquare() {
   //for each square,
   squares.forEach(square => {
     //search for the mole and remove it before the game starts
-    square.classList.remove('mole')
+    square.classList.remove('mole');
   })
   //get a random index for the random square
   let randomIndex = Math.floor(Math.random() * squares.length);
@@ -45,12 +53,11 @@ function randomSquare() {
 
 //set speed of mole
 let moleSpeedInterval = null;
+//create functions for mole moving
 function moleSpeed() {
   moleSpeedInterval = setInterval(randomSquare, 1000);
   randomSquare();
 }
-
-moleSpeed();
 
 //create countdown function
 function countdown() {
@@ -58,43 +65,46 @@ function countdown() {
     alert(`Game Over. You scored ${userScore} points.`);
     resetGame();
   } else {
-    //decrease timer by 1 increment
+    //decrease timer by 1 increment (1 second)
     timer--;
-    //print 
+    //print timer
     timeTracker.textContent = timer;
   }
 }
 
 //set speed for timer
 let ticTocInterval = null;
+//create function for timer speed
 function ticToc() {
   ticTocInterval = setInterval(countdown, 1000);
 }
 
-ticToc();
-
 //set function to reset game
 function resetGame() {
+    //clear the score. without this, points in a new game are added to the previous score.
     score.textContent = 0;
+    userScore = 0;
+    //this is only to display the timer at 3 seconds. without it, the timer just displays 2, 1, 0. 
     timeTracker.textContent = 3;
+    //this is to set the timer to run for 3 seconds. the timer will not run without it. 
+    timer = 3;
+    //clear the timer speed
     clearInterval(ticTocInterval);
+    //clear the mole moving speed
     clearInterval(moleSpeedInterval);
-    hitPosition = null;
+    //search the squares for the mole and remove it from the page
     squares.forEach(square => {
       square.classList.remove('mole');
     });
 };
 
-//set function to start new game
-
 //target start button and save in a variable
-
 const start = document.querySelector('.startBtn');
-start.addEventListener('click', resetAndStartGame);
+//add event listener
+start.addEventListener('click', startGame);
 
-function resetAndStartGame() {
-  timer = 3;
-  userScore = null;
+//create function to start the game
+function startGame() {
   resetGame();
   moleSpeed();
   ticToc();
@@ -112,86 +122,3 @@ function resetAndStartGame() {
 
 
 
-
-//---------------------------------------------------------------------
-/*
-//FIRST ATTEMPT A CODE//
-const score = document.querySelector('.score');
-let userScore = 0;
-score.textContent = userScore;
-
-const timer = document.querySelector('.timer');
-let startTimer = 5;
-timer.textContent = startTimer;
-
-const squares = document.querySelectorAll('.square');
-squares.forEach(square => {
-  square.addEventListener('mousedown', () => {
-    if (square.classList.contains('mole')) {
-      userScore++;
-      score.textContent = userScore;
-      square.classList.remove('mole');
-      if (userScore === 1) { // Start the timer only when the first mole is clicked
-        moveMole();
-        ticToc = setInterval(countdown, 1000);
-      }
-    }
-  });
-});
-
-function randomSquare() {
-  const mole = document.querySelector('.mole');
-  if (mole) {
-    mole.classList.remove('mole');
-  }
-  const randomIndex = Math.floor(Math.random() * squares.length);
-  const randomSquare = squares[randomIndex];
-  randomSquare.classList.add('mole');
-  return randomSquare;
-}
-
-let moleMoving;
-function moveMole() {
-  moleMoving = setInterval(randomSquare, 1250);
-}
-
-function countdown() {
-  if (startTimer === 0) {
-    stopGame();
-  } else {
-    startTimer--;
-    timer.textContent = startTimer;
-  }
-}
-
-function stopGame() {
-  clearInterval(ticToc);
-  clearInterval(moleMoving);
-  alert(`Game Over. Your score is: ${userScore}`);
-  squares.forEach(square => {
-    square.classList.remove('mole');
-  });
-  timer.textContent = 0;
-  score.textContent = 0;
-}
-
-//create function to restart the game
-
-  function startGame() {
-    const startBtn = document.querySelector('.startBtn');
-    startBtn.addEventListener('click', () => {
-    userScore = 0;
-    startTimer = 5;
-    score.textContent = userScore;
-    timer.textContent = startTimer;
-    randomSquare();
-    moveMole();
-    countdown();
-    clearInterval(ticToc);
-    clearInterval(moleMoving);
-    });
-  };
-
-  startGame();
-*/
-  

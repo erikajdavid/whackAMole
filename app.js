@@ -1,9 +1,9 @@
-//target timer set timer to 3, score to 0, and mole needs to be removed from the page.
+//target timer set timer to 10, score to 0, and mole needs to be removed from the page.
 
 //target timer and save in a variable
 const timeTracker = document.querySelector('.timer');
 //initialize timer to 0 and print
-let timer = 5;
+let timer = 10;
 timeTracker.textContent = timer;
 
 //target score and save in a variable
@@ -84,10 +84,10 @@ function resetGame() {
     //clear the score. without this, points in a new game are added to the previous score.
     score.textContent = 0;
     userScore = 0;
-    //this is only to display the timer at 5 seconds. without it, the timer just displays 2, 1, 0. 
+    //this is only to display the timer at 10 seconds. without it, the timer just displays 2, 1, 0. 
     timeTracker.textContent = 10;
-    //this is to set the timer to run for 5 seconds. the timer will not run without it. 
-    timer = 5;
+    //this is to set the timer to run for 10 seconds. the timer will not run without it. 
+    timer = 10;
     //clear the timer speed
     clearInterval(ticTocInterval);
     //clear the mole moving speed

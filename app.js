@@ -4,7 +4,7 @@
 //target timer set timer to 10, score to 0, and mole needs to be removed. 
 const timeTracker = document.querySelector('.timer');
 //initialize timer to 0 and print
-let timer = 5;
+let timer = 3;
 timeTracker.textContent = timer;
 
 //target score and save in a variable
@@ -13,11 +13,19 @@ const score = document.querySelector('.score');
 let userScore = 0;
 score.textContent = userScore;
 
-//target mole and save in a variable
-const mole = document.querySelector('.mole');
-
 //target all squares and save in a variable
 const squares = document.querySelectorAll('.square');
+squares.forEach(square => {
+  square.addEventListener('click', () => {
+    if (square.classList.contains('mole')) {
+      userScore++;
+      score.textContent = userScore;
+      square.classList.remove('mole');
+    }
+  });
+});
+
+let hitPosition;
 
 //create a function to get a random square for the mole
 function randomSquare() {
@@ -27,16 +35,19 @@ function randomSquare() {
     square.classList.remove('mole')
   })
   //get a random index for the random square
-  let randomIndex = [Math.floor(Math.random() * squares.length)];
+  let randomIndex = Math.floor(Math.random() * squares.length);
   let randomMolePosition = squares[randomIndex];
   //add the mole to the random square
   randomMolePosition.classList.add('mole');
+
+  randomMolePosition.id = hitPosition
 }
 
 //set speed of mole
 let moleSpeedInterval = null;
 function moleSpeed() {
   moleSpeedInterval = setInterval(randomSquare, 1000);
+  randomSquare();
 }
 
 moleSpeed();
@@ -44,8 +55,8 @@ moleSpeed();
 //create countdown function
 function countdown() {
   if(timer === 0) {
-    alert(`Game Over`);
-    stopCountdown();
+    alert(`Game Over. You scored ${userScore} points.`);
+    resetGame();
   } else {
     //decrease timer by 1 increment
     timer--;
@@ -62,15 +73,35 @@ function ticToc() {
 
 ticToc();
 
-//function to stop timmer
-
-function stopCountdown() {
+//set function to reset game
+function resetGame() {
+    score.textContent = 0;
+    timeTracker.textContent = 3;
     clearInterval(ticTocInterval);
     clearInterval(moleSpeedInterval);
-    ticToc();
-    moleSpeed();
-    randomMolePosition.classList.remove('mole');
+    hitPosition = null;
+    squares.forEach(square => {
+      square.classList.remove('mole');
+    });
+};
+
+//set function to start new game
+
+//target start button and save in a variable
+
+const start = document.querySelector('.startBtn');
+start.addEventListener('click', resetAndStartGame);
+
+function resetAndStartGame() {
+  timer = 3;
+  userScore = null;
+  resetGame();
+  moleSpeed();
+  ticToc();
 }
+
+
+
 
 
 

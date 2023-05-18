@@ -1,9 +1,9 @@
-//target timer set timer to 10, score to 0, and mole needs to be removed from the page.
+//target timer set timer to 15, score to 0, and mole needs to be removed from the page.
 
 //target timer and save in a variable
 const timeTracker = document.querySelector('.timer');
 //initialize timer to 0 and print
-let timer = 10;
+let timer = 15;
 timeTracker.textContent = timer;
 
 //target score and save in a variable
@@ -16,13 +16,24 @@ score.textContent = userScore;
 const mole = document.querySelector('.mole');
 mole.remove(); //this removes the mole from page when the page is first loaded. 
 
+//target bomb and save in a varaible
+const bomb = document.querySelector('.bomb');
+bomb.remove(); //this removes the mole from the page when the page is first loaded. 
+
 //target all squares and save in a variable
 const squares = document.querySelectorAll('.square');
 //for each square
 squares.forEach(square => {
   //add an event listener
-  square.addEventListener('click', () => {
-    if (square.classList.contains('mole')) {
+  square.addEventListener('mousedown', () => {
+    if (square.classList.contains('bomb')) {
+      //add 1 point to score
+      userScore = userScore - 3;
+      //print new score
+      score.textContent = userScore;
+      //remove mole when clicked
+      square.classList.remove('bomb') 
+    } else if (square.classList.contains('mole')) {
       //add 1 point to score
       userScore++;
       //print new score
@@ -33,14 +44,12 @@ squares.forEach(square => {
   });
 });
 
-let hitPosition;
-
 //create a function to get a random square for the mole
 function randomSquare() {
   //for each square,
   squares.forEach(square => {
     //search for the mole and remove it before the game starts
-    square.classList.remove('mole');
+    square.classList.remove('mole', 'bomb');
   })
   //get a random index for the random square
   let randomIndex = Math.floor(Math.random() * squares.length);
@@ -48,7 +57,9 @@ function randomSquare() {
   //add the mole to the random square
   randomMolePosition.classList.add('mole');
 
-  randomMolePosition.id = hitPosition
+  if (Math.random() < 0.2) {
+    randomMolePosition.classList.add('bomb');
+  }
 }
 
 //set speed of mole
@@ -84,10 +95,10 @@ function resetGame() {
     //clear the score. without this, points in a new game are added to the previous score.
     score.textContent = 0;
     userScore = 0;
-    //this is only to display the timer at 10 seconds. without it, the timer just displays 2, 1, 0. 
-    timeTracker.textContent = 10;
-    //this is to set the timer to run for 10 seconds. the timer will not run without it. 
-    timer = 10;
+    //this is only to display the timer at 15 seconds. without it, the timer just displays 2, 1, 0. 
+    timeTracker.textContent = 15;
+    //this is to set the timer to run for 15 seconds. the timer will not run without it. 
+    timer = 15;
     //clear the timer speed
     clearInterval(ticTocInterval);
     //clear the mole moving speed
@@ -101,7 +112,7 @@ function resetGame() {
 //target start button and save in a variable
 const start = document.querySelector('.startBtn');
 //add event listener
-start.addEventListener('mousedown', startGame);
+start.addEventListener('click', startGame);
 
 //create function to start the game
 function startGame() {

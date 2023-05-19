@@ -29,7 +29,7 @@ squares.forEach(square => {
     if (square.classList.contains('bomb')) {
       //create smaller square elements
       const numParticles = 25;
-      const particleSize = 15; //size of particles in px
+      const particleSize = 8; //size of particles in px
       const particleColor = "red"; //color of each particle
       const particles = Array.from({ length: numParticles }, () => {
         const particle = document.createElement('div');
@@ -40,6 +40,7 @@ squares.forEach(square => {
         square.appendChild(particle);
         return particle;
       });
+
       // Animate the particles to disperse
       particles.forEach(particle => {
         const randomAngle = Math.random() * 2 * Math.PI;

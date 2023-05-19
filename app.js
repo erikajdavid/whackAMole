@@ -27,20 +27,61 @@ squares.forEach(square => {
   //add an event listener
   square.addEventListener('mousedown', () => {
     if (square.classList.contains('bomb')) {
+      //create smaller square elements
+      const numParticles = 25;
+      const particleSize = 15; //size of particles in px
+      const particleColor = "red"; //color of each particle
+      const particles = Array.from({ length: numParticles }, () => {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        particle.style.width = particleSize + 'px';
+        particle.style.height = particleSize + 'px';
+        particle.style.backgroundColor = particleColor;
+        square.appendChild(particle);
+        return particle;
+      });
+      // Animate the particles to disperse
+      particles.forEach(particle => {
+        const randomAngle = Math.random() * 2 * Math.PI;
+        const randomDistance = Math.random() * 200 + 100; // Random distance between 50 and 150 pixels
+        const translationX = Math.cos(randomAngle) * randomDistance;
+        const translationY = Math.sin(randomAngle) * randomDistance;
+
+        particle.animate(
+          [
+            { transform: 'translate(0, 0)' },
+            { transform: `translate(${translationX}px, ${translationY}px)` }
+          ],
+          {
+            duration: 1000, // Animation duration in milliseconds
+            easing: 'ease-out' // Animation easing function
+          }
+        ).onfinish = () => {
+          particle.remove(); // Remove the particle element after the animation finishes
+        };
+      });
+   
       //remove 3 points from score
       userScore = userScore - 3;
       //print new score
       score.textContent = userScore;
       //remove bomb when clicked
-      square.classList.remove('bomb') 
+      square.classList.remove('bomb');
+      //this also removes the mole that shows up immediately after you click on the bomb. 
+      square.classList.remove('mole');
     } else if (square.classList.contains('mole')) {
+      //to flash the square for 2 seconds
+      square.style.backgroundColor = "lightgreen";
+      setTimeout(() => {
+        square.style.backgroundColor = ''; // Revert back to original color
+      }, 200);
       //add 1 point to score
       userScore++;
       //print new score
       score.textContent = userScore;
       //remove mole when clicked
       square.classList.remove('mole');
-    }
+    } 
   });
 });
 

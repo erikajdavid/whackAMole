@@ -276,7 +276,7 @@ main {
   width: 200px;
   height: 200px;
   position: relative;
-  cursor: pointer;
+  cursor: url("../assets/mallet.png"), auto;
 }
 
 .mole {

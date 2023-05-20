@@ -61,9 +61,34 @@ squares.forEach(square => {
           particle.remove(); // Remove the particle element after the animation finishes
         };
       });
+
+      // create a new element for the score animation
+      const scoreAnimation = document.createElement('div');
+      scoreAnimation.classList.add('score-animation');
+      scoreAnimation.textContent = '-25';
+      square.appendChild(scoreAnimation);
+
+        // Customize font size and color
+      scoreAnimation.style.fontSize = '50px'; // Adjust the font size as needed
+      scoreAnimation.style.color = 'red'; // Adjust the color as needed
+      scoreAnimation.style.fontWeight = "500";
+
+      // animate the score animation
+      scoreAnimation.animate(
+        [
+          { opacity: '1', transform: 'translateY(-230px)' },
+          { opacity: '0', transform: 'translateY(-270px)' }
+        ],
+        {
+          duration: 1000, // Animation duration in milliseconds
+          easing: 'ease-out' // Animation easing function
+        }
+      ).onfinish = () => {
+        scoreAnimation.remove(); // Remove the score animation element after the animation finishes
+      };
    
-      //remove 3 points from score
-      userScore = userScore - 3;
+      //remove 25 points from score
+      userScore = userScore - 25;
       //print new score
       score.textContent = userScore;
       //remove bomb when clicked
@@ -71,18 +96,44 @@ squares.forEach(square => {
       //this also removes the mole that shows up immediately after you click on the bomb. 
       square.classList.remove('mole');
     } else if (square.classList.contains('mole')) {
-      //to flash the square for 2 seconds
+      // to flash the square for 2 seconds
       square.style.backgroundColor = "lightgreen";
       setTimeout(() => {
         square.style.backgroundColor = ''; // Revert back to original color
       }, 200);
-      //add 1 point to score
-      userScore++;
-      //print new score
+
+      // create a new element for the score animation
+      const scoreAnimation = document.createElement('div');
+      scoreAnimation.classList.add('score-animation');
+      scoreAnimation.textContent = '+10';
+      square.appendChild(scoreAnimation);
+
+      scoreAnimation.style.fontSize = '50px'; // Adjust the font size as needed
+      scoreAnimation.style.color = 'green'; // Adjust the color as needed
+      scoreAnimation.style.fontWeight = "500";
+
+      // animate the score animation
+      scoreAnimation.animate(
+        [
+          { opacity: '1', transform: 'translateY(-20px)' },
+          { opacity: '0', transform: 'translateY(-60px)' }
+        ],
+        {
+          duration: 1000, // Animation duration in milliseconds
+          easing: 'ease-out' // Animation easing function
+        }
+      ).onfinish = () => {
+        scoreAnimation.remove(); // Remove the score animation element after the animation finishes
+      };
+
+      // add 10 points to score
+      userScore = userScore + 10;
+      // print new score
       score.textContent = userScore;
-      //remove mole when clicked
+
+      // remove mole when clicked
       square.classList.remove('mole');
-    } 
+    }
   });
 });
 

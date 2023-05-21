@@ -50,8 +50,8 @@ squares.forEach(square => {
 
         particle.animate(
           [
-            { transform: 'translate(0, 0)' },
-            { transform: `translate(${translationX}px, ${translationY}px)` }
+            { opacity: '1', transform: 'translate(0, 0)' },
+            { opacity: '0', transform: `translate(${translationX}px, ${translationY}px)` }
           ],
           {
             duration: 1000, // Animation duration in milliseconds
@@ -97,10 +97,10 @@ squares.forEach(square => {
       square.classList.remove('mole');
     } else if (square.classList.contains('mole')) {
       // to flash the square for 2 seconds
-      square.style.backgroundColor = "lightgreen";
-      setTimeout(() => {
-        square.style.backgroundColor = ''; // Revert back to original color
-      }, 200);
+      //square.style.backgroundColor = "lightgreen";
+      //setTimeout(() => {
+        //square.style.backgroundColor = ''; // Revert back to original color
+      //}, 200);
 
       // create a new element for the score animation
       const scoreAnimation = document.createElement('div');
